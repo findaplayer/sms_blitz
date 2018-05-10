@@ -13,7 +13,6 @@ defmodule SmsBlitz.Adapters.Twilio do
       To: to,
       From: from
     ]
-    auth = 
     {:ok, %HTTPoison.Response{body: resp, status_code: status_code}} = HTTPoison.post(
       uri,
       {:form, params},
