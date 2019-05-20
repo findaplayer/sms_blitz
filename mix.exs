@@ -38,8 +38,8 @@ defmodule SmsBlitz.Mixfile do
 
   defp deps(_), do: [
     {:hackney, "~> 1.8"},
-    {:httpoison, "~> 0.13"},
-    {:poison, ">= 2.1.0"}
+    {:httpoison, "~> 1.4"},
+    {:poison, "~> 3.0"}
   ]
 
   defp package do
