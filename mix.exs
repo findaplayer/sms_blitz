@@ -10,12 +10,12 @@ defmodule SmsBlitz.Mixfile do
      start_permanent: Mix.env == :prod,
      deps: deps(Mix.env),
      test_coverage: [tool: ExCoveralls],
-     preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test],
-     package: package]
+     preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test],
+     package: package()]
   end
 
   def application do
-    [applications: [:logger, :httpoison]]
+    [applications: [:logger, :httpoison, :poison]]
   end
 
   defp deps(:test) do
