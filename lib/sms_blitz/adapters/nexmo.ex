@@ -21,13 +21,13 @@ defmodule SmsBlitz.Adapters.Nexmo do
       api_secret: secret
     } |> Poison.encode!
 
-    {:ok, %{headers: headers, body: resp, status_code: status_code}} = HTTPoison.post(
+    {:ok, %{headers: headers, body: resp, status_code: _status_code}} = HTTPoison.post(
       uri,
       body,
       [{"Content-Type", "application/json"}]
     )
 
-    {:ok, %{"message-count" => msg_count, "messages" => [response_status]}} = Poison.decode(resp)
+    {:ok, %{"message-count" => _msg_count, "messages" => [response_status]}} = Poison.decode(resp)
 
     if response_status["status"] == "0" do
       %{
@@ -38,8 +38,8 @@ defmodule SmsBlitz.Adapters.Nexmo do
     else
 
       {_key, trace_id} = Enum.find(headers, fn
-          ({"X-Nexmo-Trace-Id", value}) -> true
-          (_)                           -> false
+          ({"X-Nexmo-Trace-Id", _value}) -> true
+          (_)                            -> false
         end)
 
       %{
